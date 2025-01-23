@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addNote, deleteNote, updateNote } from "../Components/Store";
+import { addNote, deleteNote, updateNote } from "../Components/Action";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import styled from "styled-components";
@@ -64,7 +64,6 @@ const OUTPUT = styled.div`
   justify-content: center;
   text-align: center;
   flex-wrap: wrap;
-  
 
   div {
     width: 300px;
@@ -75,8 +74,8 @@ const OUTPUT = styled.div`
     height: auto;
     margin: 30px;
     position: relative;
-    padding:20px;
-    padding-top:30px;
+    padding: 20px;
+    padding-top: 30px;
 
     h3,
     p {
@@ -109,7 +108,7 @@ const Home = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [sortOrder, setSortOrder] = useState("");
   const dispatch = useDispatch();
-  const notes = useSelector((state) => state.notes);
+  const notes = useSelector((state) => state);
 
   const handleSort = (notes) => {
     if (sortOrder === "A-Z") {
@@ -182,7 +181,9 @@ const Home = () => {
               <option value="Low Priority">Low Priority</option>
             </select>
             <BTN>
-              <button type="submit">{editIndex !== null ? <span style={{fontSize:'18px'}}>Update</span>  : "+"}</button>
+              <button type="submit">
+                {editIndex !== null ? <span style={{ fontSize: "18px" }}>Update</span> : "+"}
+              </button>
             </BTN>
           </form>
         </MAIN>
